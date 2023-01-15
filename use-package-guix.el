@@ -48,7 +48,7 @@ already there."
 (defun use-package-guix-install-package (package)
   "Install PACKAGE, a guix package as returned by `emacs-package->guix-package`,
 into `use-package-profile`"
-  (if (guix-package-installed-p package)
+  (if (use-package-guix-package-installed-p package)
       t
     (guix-process-package-actions
      use-package-profile
@@ -68,7 +68,7 @@ into `use-package-profile`"
 	  (setq package (car package)))
 
 	(let ((package (emacs-package->guix-package (use-package-as-string package))))
-	  (unless (guix-package-installed-p package)
+	  (unless (use-package-guix-package-installed-p package)
 	    (use-package-guix-install-package package)
 	    (use-package-guix-update-load-path)))))))
 
