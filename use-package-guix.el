@@ -56,6 +56,7 @@ into `use-package-profile`"
      (current-buffer))))
 
 
+;;;###autoload
 (defun use-package-ensure-guix (name args _state &optional _no-refresh)
   (dolist (ensure args)
     (let ((package
@@ -72,7 +73,7 @@ into `use-package-profile`"
 	    (use-package-guix-update-load-path)))))))
 
 ;;;###autoload
-(defun guix-use-package-profile ()
+(defun use-package-guix-profile ()
   "Display interface for `guix-use-package-profile'."
   (interactive)
   (bui-get-display-entries 'guix-profile 'info
