@@ -34,7 +34,7 @@
 (defun emacs-package->guix-package (package)
   "Return guix package from package name"
   (car (guix-output-list-get-entries use-package-profile 'name
-				     (canonicalize-name package))))
+				     (use-package-guix-canonicalize-name package))))
 
 (defun use-package-guix-update-load-path ()
   "Ensures all ensured packages are added to the load-path if not
