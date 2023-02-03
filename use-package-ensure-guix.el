@@ -83,4 +83,4 @@ into `use-package-profile`"
   (bui-get-display-entries 'guix-profile 'info
 			   (list 'profile use-package-profile)))
 
-(provide 'use-package-guix)
+(provide 'use-package-ensure-guix)
