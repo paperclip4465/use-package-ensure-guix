@@ -5,20 +5,20 @@ packages using GNU Guix instead of elpa.
 
 ** Usage
 
-~use-package~ can be used to manage ~use-package-guix~ (just don't ~:ensure~ it).
+~use-package~ can be used to manage ~use-package-ensure-guix~ (just don't ~:ensure~ it).
 
 Place this before all other ~use-package~ forms.
 
 #+BEGIN_SRC elisp
   (require 'use-package)
-  (use-package use-package-guix
+  (use-package use-package-ensure-guix
     :custom
     (use-package-ensure-function #'use-package-ensure-guix))
 #+END_SRC
 
 
 The ~use-package-profile~ variable can be customized to use any
-profile (even the default =/.guix-profile=).  Because of the way
+profile (even the default =~/.guix-profile=).  Because of the way
 ~use-package~ works, there is no way to apply all of the ~use-package~
 forms at once as a manifest.
 
@@ -32,5 +32,5 @@ your emacs packages.
 This package only detects when new ~use-package~ forms are added to
 =init.el=, it does not know when they are deleted.
 
-The function ~use-package-guix-show-ensured~ allows for management of
-the profile using the ~emacs-guix~ UI.
+The function ~use-package-ensure-guix-show-ensured~ allows for
+management of the profile using the ~emacs-guix~ UI.
