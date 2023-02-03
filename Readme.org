@@ -1,0 +1,37 @@
+* use-package-ensure-guix
+
+This is a use-package-ensure implementation that will install ensured
+packages using GNU Guix instead of elpa.
+
+** Usage
+
+~use-package~ can be used to manage ~use-package-guix~ (just don't ~:ensure~ it).
+emacs as well as
+
+Place this before all other ~use-package~ forms.
+
+#+BEGIN_SRC elisp
+  (require 'use-package)
+  (use-package use-package-guix
+    :custom
+    (use-package-ensure-function #'use-package-ensure-guix))
+#+END_SRC
+
+
+The ~use-package-profile~ variable can be customized to use any
+profile (even the default ~/.guix-profile).  Because of the way
+~use-package~ works, there is no way to apply all of the ~use-package~
+forms at once as a manifest.
+
+Instead a new generation is created for every package not already
+installed.  To avoid having 20 generations created on the first run
+you may wish to bootstrap your profile with a manifest which contains
+your emacs packages.
+
+** Profile Management
+
+This package only detects when new ~use-package~ forms are added to
+=init.el=, it does not know when they are deleted.
+
+The function ~use-package-guix-show-ensured~ allows for management of
+the profile using the ~emacs-guix~ UI.
