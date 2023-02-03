@@ -16,9 +16,6 @@
   :type 'string
   :group 'use-package-ensure-guix)
 
-(defvar use-package-ensured-guix-packages '()
-  "List of guix packages which use-package ensures.")
-
 (defun use-package-guix-show-ensured ()
   (interactive)
   (guix-profile-info-show-packages use-package-ensure-guix-profile))
