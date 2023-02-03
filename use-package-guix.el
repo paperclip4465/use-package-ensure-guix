@@ -36,6 +36,7 @@
   (car (guix-output-list-get-entries use-package-profile 'name
 				     (use-package-guix-canonicalize-name package))))
 
+;;;###autoload
 (defun use-package-guix-update-load-path ()
   "Ensures all ensured packages are added to the load-path if not
 already there."
@@ -45,6 +46,7 @@ already there."
 	(directory-files (concat use-package-profile "/share/emacs/site-lisp") t)))
 
 
+;;;###autoload
 (defun use-package-guix-install-package (package)
   "Install PACKAGE, a guix package as returned by `emacs-package->guix-package`,
 into `use-package-profile`"
