@@ -1,3 +1,5 @@
+;;; Copyright © 2022-2023 Mitchell Schmeisser <mitchellschmeisser@librem.one>
+
 (require 'guix)
 (require 'guix-profiles)
 (require 'guix-read)
