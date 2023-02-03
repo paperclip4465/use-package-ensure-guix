@@ -11,7 +11,7 @@
   "use-package support for guix"
   :group 'use-package-ensure)
 
-(defcustom use-package-profile (concat (getenv "HOME") "/.emacs.d/guix-profile")
+(defcustom use-package-ensure-guix-profile (concat (getenv "HOME") "/.emacs.d/guix-profile")
   "Location of use-package guix profile"
   :type 'string
   :group 'use-package-ensure-guix)
@@ -21,7 +21,7 @@
 
 (defun use-package-guix-show-ensured ()
   (interactive)
-  (guix-profile-info-show-packages use-package-profile))
+  (guix-profile-info-show-packages use-package-ensure-guix-profile))
 
 
 (defun use-package-guix-package-installed-p (package)
@@ -35,7 +35,7 @@
 
 (defun emacs-package->guix-package (package)
   "Return guix package from package name"
-  (car (guix-output-list-get-entries use-package-profile 'name
+  (car (guix-output-list-get-entries use-package-ensure-guix-profile 'name
 				     (use-package-guix-canonicalize-name package))))
 
 ;;;###autoload
@@ -45,17 +45,17 @@ already there."
   (mapc (lambda (x)
 	  (unless (member x load-path)
 	    (add-to-list 'load-path x)))
-	(directory-files (concat use-package-profile "/share/emacs/site-lisp") t)))
+	(directory-files (concat use-package-ensure-guix-profile "/share/emacs/site-lisp") t)))
 
 
 ;;;###autoload
 (defun use-package-guix-install-package (package)
   "Install PACKAGE, a guix package as returned by `emacs-package->guix-package`,
-into `use-package-profile`"
+into `use-package-ensure-guix-profile`"
   (if (use-package-guix-package-installed-p package)
       t
     (guix-process-package-actions
-     use-package-profile
+     use-package-ensure-guix-profile
      `((install (,(string-to-number (car (split-string (bui-entry-id package) ":"))) "out")))
      (current-buffer))))
 
@@ -78,9 +78,9 @@ into `use-package-profile`"
 
 ;;;###autoload
 (defun use-package-guix-profile ()
-  "Display interface for `guix-use-package-profile'."
+  "Display interface for `guix-use-package-ensure-guix-profile'."
   (interactive)
   (bui-get-display-entries 'guix-profile 'info
-			   (list 'profile use-package-profile)))
+			   (list 'profile use-package-ensure-guix-profile)))
 
 (provide 'use-package-ensure-guix)
