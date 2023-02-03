@@ -1,4 +1,32 @@
-;;; Copyright © 2022-2023 Mitchell Schmeisser <mitchellschmeisser@librem.one>
+;;; use-package-ensure-guix.el --- Ensure used packages with Guix
+
+;; Copyright (C) 2023  Mitchell Schmeisser <mitchellschmeisser@librem.one>
+
+;; Author: Mitchell Schmeisser <mitchellschmeisser@librem.one>
+;; Maintainer: Mitchell Schmeisser <mitchellschmeisser@librem.one>
+;; URL: https://github.com/paperclip4465/use-package-ensure-guix
+;; Keywords: dotemacs config package guix
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This package allows you to make use-package.el ensure that Emacs-packages
+;; are installed by using GNU Guix. It will install respective packages into
+;; an Emacs-specific guix-profile.
+
+;;; Code:
 
 (require 'guix)
 (require 'guix-misc)
@@ -80,3 +108,5 @@ into `use-package-ensure-guix-profile`"
 			   (list 'profile use-package-ensure-guix-profile)))
 
 (provide 'use-package-ensure-guix)
+
+;;; use-package-ensure-guix.el ends here
