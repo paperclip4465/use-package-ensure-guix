@@ -33,6 +33,7 @@
 (require 'guix-profiles)
 (require 'guix-read)
 (require 'guix-ui-package)
+(require 'guix-ui-profile)
 (require 'guix-utils)
 
 (defgroup use-package-ensure-guix nil
