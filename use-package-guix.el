@@ -7,14 +7,14 @@
 (require 'guix-ui-package)
 (require 'guix-utils)
 
-(defgroup use-package-guix nil
+(defgroup use-package-ensure-guix nil
   "use-package support for guix"
   :group 'use-package-ensure)
 
 (defcustom use-package-profile (concat (getenv "HOME") "/.emacs.d/guix-profile")
   "Location of use-package guix profile"
   :type 'string
-  :group 'use-package-guix)
+  :group 'use-package-ensure-guix)
 
 (defvar use-package-ensured-guix-packages '()
   "List of guix packages which use-package ensures.")
