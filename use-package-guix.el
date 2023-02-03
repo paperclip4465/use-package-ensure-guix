@@ -71,8 +71,8 @@ into `use-package-profile`"
 
 	(let ((package (emacs-package->guix-package (use-package-as-string package))))
 	  (unless (use-package-guix-package-installed-p package)
-	    (use-package-guix-install-package package)
-	    (use-package-guix-update-load-path)))))))
+	    (use-package-guix-install-package package))
+	  (use-package-guix-update-load-path))))))
 
 ;;;###autoload
 (defun use-package-guix-profile ()
