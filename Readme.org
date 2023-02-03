@@ -6,7 +6,6 @@ packages using GNU Guix instead of elpa.
 ** Usage
 
 ~use-package~ can be used to manage ~use-package-guix~ (just don't ~:ensure~ it).
-emacs as well as
 
 Place this before all other ~use-package~ forms.
 
