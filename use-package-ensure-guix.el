@@ -44,26 +44,26 @@
   :type 'string
   :group 'use-package-ensure-guix)
 
-(defun use-package-guix-show-ensured ()
+(defun use-package-ensure-guix-show-packages ()
   (interactive)
   (guix-profile-info-show-packages use-package-ensure-guix-profile))
 
 (defun use-package-ensure-guix-installed-p (package)
   (bui-assoc-value package 'installed))
 
-(defun use-package-guix-canonicalize-name (package-name)
+(defun use-package-ensure-guix--get-guix-package-name (package-name)
   "Make sure package name has \"emacs-\" prefix"
   (if (string-match "^emacs-.+" package-name)
       package-name
     (concat "emacs-" package-name)))
 
-(defun emacs-package->guix-package (package)
+(defun use-package-ensure-guix--get-guix-package (package)
   "Return guix package from package name"
   (car (guix-output-list-get-entries use-package-ensure-guix-profile 'name
-				     (use-package-guix-canonicalize-name package))))
+		 (use-package-ensure-guix--get-guix-package-name package))))
 
 ;;;###autoload
-(defun use-package-guix-update-load-path ()
+(defun use-package-ensure-guix-update-load-path ()
   "Ensures all ensured packages are added to the load-path if not
 already there."
   (mapc (lambda (x)
@@ -73,8 +73,8 @@ already there."
 
 
 ;;;###autoload
-(defun use-package-guix-install-package (package)
-  "Install PACKAGE, a guix package as returned by `emacs-package->guix-package`,
+(defun use-package-ensure-guix--install (package)
+  "Install PACKAGE, a guix package as returned by `use-package-ensure-guix--get-guix-package`,
 into `use-package-ensure-guix-profile`"
   (if (use-package-ensure-guix-installed-p package)
       t
@@ -95,14 +95,15 @@ into `use-package-ensure-guix-profile`"
 	(when (consp package)
 	  (setq package (car package)))
 
-	(let ((package (emacs-package->guix-package (use-package-as-string package))))
+	(let ((package (use-package-ensure-guix--get-guix-package (use-package-as-string package))))
 	  (unless (use-package-ensure-guix-installed-p package)
-	    (use-package-guix-install-package package))
-	  (use-package-guix-update-load-path))))))
+	    (use-package-ensure-guix--install package))
+	  (use-package-ensure-guix-update-load-path))))))
 
 ;;;###autoload
-(defun use-package-guix-profile ()
-  "Display interface for `guix-use-package-ensure-guix-profile'."
+(defun use-package-ensure-guix-profile-info ()
+  "Display interactive information for
+`guix-use-package-ensure-guix-profile'."
   (interactive)
   (bui-get-display-entries 'guix-profile 'info
 			   (list 'profile use-package-ensure-guix-profile)))
