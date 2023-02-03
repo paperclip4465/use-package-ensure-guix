@@ -18,7 +18,7 @@ Place this before all other ~use-package~ forms.
 
 
 The ~use-package-profile~ variable can be customized to use any
-profile (even the default ~/.guix-profile).  Because of the way
+profile (even the default =/.guix-profile=).  Because of the way
 ~use-package~ works, there is no way to apply all of the ~use-package~
 forms at once as a manifest.
 
