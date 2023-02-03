@@ -20,8 +20,7 @@
   (interactive)
   (guix-profile-info-show-packages use-package-ensure-guix-profile))
 
-
-(defun use-package-guix-package-installed-p (package)
+(defun use-package-ensure-guix-installed-p (package)
   (bui-assoc-value package 'installed))
 
 (defun use-package-guix-canonicalize-name (package-name)
@@ -49,7 +48,7 @@ already there."
 (defun use-package-guix-install-package (package)
   "Install PACKAGE, a guix package as returned by `emacs-package->guix-package`,
 into `use-package-ensure-guix-profile`"
-  (if (use-package-guix-package-installed-p package)
+  (if (use-package-ensure-guix-installed-p package)
       t
     (guix-process-package-actions
      use-package-ensure-guix-profile
@@ -69,7 +68,7 @@ into `use-package-ensure-guix-profile`"
 	  (setq package (car package)))
 
 	(let ((package (emacs-package->guix-package (use-package-as-string package))))
-	  (unless (use-package-guix-package-installed-p package)
+	  (unless (use-package-ensure-guix-installed-p package)
 	    (use-package-guix-install-package package))
 	  (use-package-guix-update-load-path))))))
 
